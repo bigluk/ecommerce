@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  postgres:
+    # Pull the latest PostgreSQL image
+    image: postgres:14-alpine
+    # Assign a name to the container
+    container_name: psg_instance
+    # Set the environment variable for the PostgreSQL password
+    environment:
+      POSTGRES_PASSWORD: psw
+    # Map port 5432 of the container to port 5432 of the host
+    ports:
+      - "5432:5432"
+    # Create a volume to persist data
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    # Restart policy: Always restart the container if it stops
+    restart: always
+
+  pgadmin:
+    # Pull the pgAdmin image
+    image: dpage/pgadmin4
+    # Assign a name to the container
+    container_name: pg_admin
+    # Set environment variables for pgAdmin's configuration
+    # PGADMIN_DEFAULT_SERVER_URL specifies the address of the PostgreSQL database server that pgAdmin should connect to # by default when you start the application.
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: psw
+      PGADMIN_DEFAULT_SERVER_URL: http://psg_instance:5432/postgres
+    # Map port 80 of the container to port 8080 of the host
+    ports:
+      - "8080:80"
+    # Create a volume to persist pgAdmin's data
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin4
+    # Ensure that the PostgreSQL container starts before pgAdmin
+    depends_on:
+      - postgres
+    # Restart policy: Always restart the container if it stops
+    restart: always
+
+volumes:
+  postgres_data:
+  pgadmin_data:

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+
+    <changeSet id="20241110 creation item table" author="l.bigiotti">
+        <createTable tableName="ITEM">
+            <column name="barcode" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="description" type="TEXT"/>
+            <column name="net_weight" type="DECIMAL(10,2)"/>
+            <column name="status" type="VARCHAR(50)"/>
+            <column name="creation_date" type="TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+
+
+</databaseChangeLog>
