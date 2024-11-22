@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+
+    <changeSet id="20241121 creation user auth table" author="l.bigiotti">
+        <createTable tableName="user_credential">
+            <column name="username" type="VARCHAR(50)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="password" type="VARCHAR(100)"/>
+            <column name="is_account_disabled" type="BOOLEAN" defaultValue="false"/>
+            <column name="authority" type="VARCHAR(50)"/>
+        </createTable>
+    </changeSet>
+
+
+</databaseChangeLog>
