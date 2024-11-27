@@ -34,18 +34,18 @@ public class ItemController {
 		@ApiResponse(responseCode = "404", description = "Item not found") 
     })
 	@GetMapping(value = "/find/{barcode}", produces = "application/json")
-	public ResponseEntity<Item> findItemByBarcode(@PathVariable("barcode") String barcode) throws NotFoundException {
+	public ResponseEntity<Item> findItemByBarcode(@PathVariable("barcode") Long barcode) throws NotFoundException {
 
 		log.info("Received new request to find item with barcode: {}", barcode);
 		
-		Item articolo = itemService.fetchItemByBarcode(barcode);
+		Item item = itemService.fetchItemByBarcode(barcode);
 		
-		if (articolo == null){
+		if (item == null){
 			log.info("No item found with barcode: {}", barcode);
 			throw new NotFoundException("No item found with barcode: " + barcode);
 		}
 		
-		return new ResponseEntity<Item>(articolo, HttpStatus.OK);
+		return new ResponseEntity<>(item, HttpStatus.OK);
     
 
 	}

@@ -25,7 +25,7 @@ public class ItemEntity  implements Serializable {
 	@Column(name = "barcode")
 	@Size(min = 5, max = 20, message = "barcode must be between 5 and 20 digits")
 	@NotNull(message = "barcode cannot be null")
-	private String barcode;
+	private Long barcode;
 	
 	@Column(name = "description")
 	@Size(min = 6, max = 80, message = "{Size.Articoli.descrizione.Validation}")

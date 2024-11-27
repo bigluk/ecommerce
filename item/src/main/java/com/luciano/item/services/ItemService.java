@@ -21,7 +21,7 @@ public class ItemService {
 
 
 
-    public Item fetchItemByBarcode(String barcode) {
+    public Item fetchItemByBarcode(Long barcode) {
 
 		ItemEntity item = itemRepository.findByBarcode(barcode);
 		

@@ -10,6 +10,6 @@ import com.luciano.item.entities.ItemEntity;
 public interface ItemRepository extends CrudRepository<ItemEntity, String>{
     
 	@Query(value = "SELECT * FROM ITEM WHERE BARCODE = :barcode", nativeQuery = true)
-    ItemEntity findByBarcode(String barcode);
+    ItemEntity findByBarcode(Long barcode);
 	
 }
